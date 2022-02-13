@@ -1,16 +1,34 @@
-# applemusic
+# Apple Music Preview
 
-A new Flutter project.
+![Apple Music Logo](assets/images/apple_music.webp "Apple Music Logo")
 
-## Getting Started
+## App Description
 
-This project is a starting point for a Flutter application.
+This project is a Music App that leverages the iTunes Rest API to get music data and playable music trailers.
 
-A few resources to get you started if this is your first Flutter project:
+### Supported devices
+-  Currently Only Support Android OS
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Supported features
+- Get Music from Itunes API
+- Can play and pause music 
+- Search Music by Music Name, Artist Name, etc
 
-For help getting started with Flutter, view our
+### Requirements to build the app
+- Dart Version 2.16.0 (Tested)
+- Flutter Version 2.10.0 (Tested)
+
+### Instructions to build and deploy the app
+
+- Build APK Release
+  ```terminal
+  flutter build apk
+  ```
+- Build APK Bundle
+  ```terminal
+  flutter build appbundle
+  ```
+
+For more help with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.

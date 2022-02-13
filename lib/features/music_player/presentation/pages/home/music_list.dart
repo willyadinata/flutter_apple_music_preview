@@ -1,8 +1,6 @@
-import 'package:applemusic/di/get_it.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio/just_audio.dart';
 
 import '../../../../../common/core/enums/enums.dart';
 import '../../../../music_player/presentation/blocs/music_player/music_player_cubit.dart';
@@ -15,7 +13,8 @@ class MusicList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AudioPlayer _audioPlayer = getItInstance<AudioPlayer>();
+    final MusicPlayerCubit _musicPlayerCubit =
+        context.watch<MusicPlayerCubit>();
 
     return BlocBuilder<MusicListCubit, MusicListState>(
       builder: (context, state) {
@@ -28,18 +27,32 @@ class MusicList extends StatelessWidget {
                 final _music = context.read<MusicListCubit>().selectedMusic(i);
                 context.read<MusicPlayerCubit>().loadMusic(_music);
               },
+              isThreeLine: true,
               leading: CircleAvatar(
                 backgroundImage: CachedNetworkImageProvider(
                   state.music[i].artworkUrl30,
                 ),
               ),
               title: Text(state.music[i].trackName),
-              subtitle: Text(
-                'Author: ${state.music[i].artistName}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              subtitle: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Author: ${state.music[i].artistName}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    'Album: ${state.music[i].collectionName}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
-              trailing: _audioPlayer.playing && state.currentIndex == i
+              trailing: _musicPlayerCubit.state.playerState ==
+                          AudioPlayerState.playing &&
+                      state.currentIndex == i
                   ? const Text('Playing')
                   : const SizedBox.shrink(),
             ),

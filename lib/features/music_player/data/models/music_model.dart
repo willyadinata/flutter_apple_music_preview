@@ -5,7 +5,6 @@ class MusicModel extends MusicEntity {
   final String? kind;
   final int? artistId;
   final int? collectionId;
-  final int? trackId;
   final String? collectionCensoredName;
   final String? trackCensoredName;
   final String? artistViewUrl;
@@ -30,7 +29,7 @@ class MusicModel extends MusicEntity {
     this.kind,
     this.artistId,
     this.collectionId,
-    this.trackId,
+    required int trackId,
     required String artistName,
     required String collectionName,
     required String trackName,
@@ -61,6 +60,7 @@ class MusicModel extends MusicEntity {
           artistName: artistName,
           collectionName: collectionName,
           trackName: trackName,
+          trackId: trackId,
           previewUrl: previewUrl,
           artworkUrl30: artworkUrl30,
           artworkUrl60: artworkUrl60,

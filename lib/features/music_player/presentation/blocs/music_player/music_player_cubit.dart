@@ -18,8 +18,7 @@ class MusicPlayerCubit extends Cubit<MusicPlayerState> {
       emit(state.copyWith(playerState: AudioPlayerState.loading));
       await audioPlayer.setAudioSource(
         AudioSource.uri(
-          Uri.parse(
-              'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'),
+          Uri.parse(url),
         ),
         initialPosition: Duration.zero,
         preload: true,

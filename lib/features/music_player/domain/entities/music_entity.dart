@@ -4,6 +4,7 @@ class MusicEntity extends Equatable {
   final String artistName;
   final String collectionName;
   final String trackName;
+  final int trackId;
   final String previewUrl;
   final String artworkUrl30;
   final String artworkUrl60;
@@ -14,6 +15,7 @@ class MusicEntity extends Equatable {
     required this.artistName,
     required this.collectionName,
     required this.trackName,
+    required this.trackId,
     required this.previewUrl,
     required this.artworkUrl30,
     required this.artworkUrl60,
@@ -26,6 +28,7 @@ class MusicEntity extends Equatable {
         artistName,
         collectionName,
         trackName,
+        trackId,
         previewUrl,
         artworkUrl30,
         artworkUrl60,

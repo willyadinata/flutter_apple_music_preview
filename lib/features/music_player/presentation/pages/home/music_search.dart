@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:applemusic/di/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../blocs/music_list/music_list_cubit.dart';
 
@@ -33,6 +35,8 @@ class _MusicSearchState extends State<MusicSearch> {
 
   @override
   Widget build(BuildContext context) {
+    final AudioPlayer _audioPlayer = getItInstance<AudioPlayer>();
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       margin: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
@@ -64,8 +68,9 @@ class _MusicSearchState extends State<MusicSearch> {
               ),
               onChanged: (query) {
                 if (_debounce?.isActive ?? false) _debounce!.cancel();
-                _debounce = Timer(const Duration(milliseconds: 500), () {
+                _debounce = Timer(const Duration(seconds: 1), () {
                   context.read<MusicListCubit>().loadMusicByQuery(query: query);
+                  _audioPlayer.stop();
                 });
               },
             ),

@@ -10,7 +10,7 @@ class MusicListState extends Equatable {
     this.music = const [],
     this.stateStatus = BlocState.isInitial,
     this.errorMessage = '',
-    this.currentIndex = 0,
+    this.currentIndex = -1,
   });
 
   @override
